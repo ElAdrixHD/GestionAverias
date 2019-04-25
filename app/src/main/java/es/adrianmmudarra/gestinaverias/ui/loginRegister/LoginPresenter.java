@@ -19,7 +19,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginRegisterInt
     @Override
     public void onEmailEmptyError() {
         view.setEmailEmptyError();
-        view.showProgressBar();
+        view.hideProgressBar();
     }
 
     @Override

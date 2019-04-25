@@ -15,6 +15,6 @@ public class RegisterView extends AppCompatActivity {
     }
 
     private void initialize() {
-        setTitle("Inicio Sesión");
+        setTitle("Registro");
     }
 }

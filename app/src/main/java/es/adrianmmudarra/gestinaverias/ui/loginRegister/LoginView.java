@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import es.adrianmmudarra.gestinaverias.R;
 
@@ -38,6 +39,8 @@ public class LoginView extends AppCompatActivity implements LoginContract.View, 
         ed_password = findViewById(R.id.ed_login_password);
         btn_login = findViewById(R.id.btn_login_login);
         btn_register = findViewById(R.id.btn_login_register);
+        btn_login.setOnClickListener(this);
+        btn_register.setOnClickListener(this);
 
         presenter = new LoginPresenter(this);
     }
@@ -78,13 +81,17 @@ public class LoginView extends AppCompatActivity implements LoginContract.View, 
 
     @Override
     public void setAuthenticationError() {
-        tv_email_error.clearComposingText();
-        tv_password_error.setText("El usuario o la contraseña no son válidos");
+        tv_email_error.setText("");
+        tv_password_error.setText("");
+        Toast.makeText(LoginView.this,"Credenciales inválidas",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onSuccess() {
         //startActivity(new Intent(LoginView.this, ));
+        tv_email_error.setText("");
+        tv_password_error.setText("");
+        Toast.makeText(LoginView.this,"Credenciales correctas",Toast.LENGTH_SHORT).show();
     }
 
     @Override
