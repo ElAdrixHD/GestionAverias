@@ -38,4 +38,17 @@ public class UserRepository {
         }
         return false;
     }
+
+    public boolean existsUser(String email){
+        for(User user : users){
+            if (user.getEmail().equals(email))
+                return true;
+        }
+        return false;
+    }
+
+    public void registerUser(String name, String email, String password, String birthday){
+        int newID = (users.get(users.size()-1).getId_user())+1;
+        add(new User(newID,name,email,password,birthday,KindUser.NORMAL_USER));
+    }
 }

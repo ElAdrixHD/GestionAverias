@@ -44,4 +44,14 @@ public class LoginPresenter implements LoginContract.Presenter, LoginRegisterInt
         view.onSuccess();
         view.hideProgressBar();
     }
+
+    @Override
+    public void onClearErrorEmail() {
+        view.clearErrorEmail();
+    }
+
+    @Override
+    public void onClearErrorPassword() {
+        view.clearErrorPassword();
+    }
 }

@@ -9,6 +9,8 @@ public class LoginContract {
         void setPasswordError();
         void setAuthenticationError();
         void onSuccess();
+        void clearErrorEmail();
+        void clearErrorPassword();
     }
 
     public interface Presenter{

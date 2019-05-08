@@ -81,17 +81,23 @@ public class LoginView extends AppCompatActivity implements LoginContract.View, 
 
     @Override
     public void setAuthenticationError() {
-        tv_email_error.setText("");
-        tv_password_error.setText("");
         Toast.makeText(LoginView.this,"Credenciales inválidas",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onSuccess() {
         //startActivity(new Intent(LoginView.this, ));
-        tv_email_error.setText("");
-        tv_password_error.setText("");
         Toast.makeText(LoginView.this,"Credenciales correctas",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void clearErrorEmail() {
+        tv_email_error.setText("");
+    }
+
+    @Override
+    public void clearErrorPassword() {
+        tv_password_error.setText("");
     }
 
     @Override
