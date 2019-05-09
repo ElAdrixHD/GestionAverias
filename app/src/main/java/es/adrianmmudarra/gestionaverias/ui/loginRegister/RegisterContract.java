@@ -1,4 +1,6 @@
-package es.adrianmmudarra.gestinaverias.ui.loginRegister;
+package es.adrianmmudarra.gestionaverias.ui.loginRegister;
+
+import android.content.Context;
 
 public class RegisterContract {
     public interface View{
@@ -20,6 +22,6 @@ public class RegisterContract {
     }
 
     public interface Presenter{
-        void RegisterCredentials(String name, String email, String password, String passwordConfirm, String birthday);
+        void RegisterCredentials(String name, String email, String password, String passwordConfirm, String birthday, Context context);
     }
 }

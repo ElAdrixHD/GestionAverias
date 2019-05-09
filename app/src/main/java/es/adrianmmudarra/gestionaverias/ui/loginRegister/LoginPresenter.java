@@ -1,4 +1,6 @@
-package es.adrianmmudarra.gestinaverias.ui.loginRegister;
+package es.adrianmmudarra.gestionaverias.ui.loginRegister;
+
+import android.content.Context;
 
 public class LoginPresenter implements LoginContract.Presenter, LoginRegisterInteractor.LoginInteractor {
 
@@ -11,9 +13,9 @@ public class LoginPresenter implements LoginContract.Presenter, LoginRegisterInt
     }
 
     @Override
-    public void validateCredentials(String email, String password) {
+    public void validateCredentials(String email, String password, Context context) {
         view.showProgressBar();
-        interactor.LoginCredentials(email,password,this);
+        interactor.LoginCredentials(email,password,this,context);
     }
 
     @Override

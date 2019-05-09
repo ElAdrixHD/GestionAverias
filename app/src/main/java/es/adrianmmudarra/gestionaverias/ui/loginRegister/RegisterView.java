@@ -1,4 +1,4 @@
-package es.adrianmmudarra.gestinaverias.ui.loginRegister;
+package es.adrianmmudarra.gestionaverias.ui.loginRegister;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import es.adrianmmudarra.gestinaverias.R;
-import es.adrianmmudarra.gestinaverias.utils.DatePickerFragment;
+import es.adrianmmudarra.gestionaverias.R;
+import es.adrianmmudarra.gestionaverias.utils.DatePickerFragment;
 
 public class RegisterView extends AppCompatActivity implements View.OnClickListener, RegisterContract.View{
 
@@ -64,7 +64,7 @@ public class RegisterView extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.btn_register_confirm:
-                presenter.RegisterCredentials(ed_name.getText().toString(), ed_email.getText().toString(),ed_password.getText().toString(), ed_password_confirm.getText().toString(),ed_birthday.getText().toString());
+                presenter.RegisterCredentials(ed_name.getText().toString(), ed_email.getText().toString(),ed_password.getText().toString(), ed_password_confirm.getText().toString(),ed_birthday.getText().toString(),this);
                 break;
         }
     }

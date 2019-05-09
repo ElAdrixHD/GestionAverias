@@ -1,13 +1,12 @@
-package es.adrianmmudarra.gestinaverias.data.db.repository;
+package es.adrianmmudarra.gestionaverias.data.db.repository;
 
 import java.util.ArrayList;
 
-import es.adrianmmudarra.gestinaverias.data.db.model.KindUser;
-import es.adrianmmudarra.gestinaverias.data.db.model.User;
+import es.adrianmmudarra.gestionaverias.data.db.model.KindUser;
+import es.adrianmmudarra.gestionaverias.data.db.model.User;
 
 public class UserRepository {
     private ArrayList<User> users;
-    private static UserRepository userRepository = new UserRepository();
 
     public UserRepository(){
         users = new ArrayList<>();
@@ -23,20 +22,16 @@ public class UserRepository {
         users.add(user);
     }
 
-    public static UserRepository getInstance(){
-        return userRepository;
-    }
-
     public ArrayList<User> getUsers(){
         return users;
     }
 
-    public boolean validateUser(String email, String password) {
+    public User validateUser(String email, String password) {
         for(User user : users){
             if ((user.getEmail().equals(email)) && (user.getPassword().equals(password)))
-                return true;
+                return user;
         }
-        return false;
+        return null;
     }
 
     public boolean existsUser(String email){
@@ -47,8 +42,8 @@ public class UserRepository {
         return false;
     }
 
-    public void registerUser(String name, String email, String password, String birthday){
-        int newID = (users.get(users.size()-1).getId_user())+1;
-        add(new User(newID,name,email,password,birthday,KindUser.NORMAL_USER));
+    public void registerUser(String name, String email, String password, String birthday) {
+        int newID = (users.get(users.size() - 1).getId_user()) + 1;
+        add(new User(newID, name, email, password, birthday, KindUser.NORMAL_USER));
     }
 }

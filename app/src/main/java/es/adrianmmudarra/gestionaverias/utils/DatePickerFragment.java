@@ -1,4 +1,4 @@
-package es.adrianmmudarra.gestinaverias.utils;
+package es.adrianmmudarra.gestionaverias.utils;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

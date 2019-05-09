@@ -1,23 +1,26 @@
-package es.adrianmmudarra.gestinaverias.ui.loginRegister;
+package es.adrianmmudarra.gestionaverias.ui.loginRegister;
 
 
+import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import es.adrianmmudarra.gestinaverias.data.db.repository.UserRepository;
+import es.adrianmmudarra.gestionaverias.data.db.model.User;
+import es.adrianmmudarra.gestionaverias.data.db.repository.UserRepository;
+import es.adrianmmudarra.gestionaverias.ui.application.BreakdownApplication;
 
 public class LoginRegisterInteractor {
 
     private UserRepository userRepository;
 
-    public void LoginCredentials(final String email, final String password, final LoginInteractor listener){
+    public void LoginCredentials(final String email, final String password, final LoginInteractor listener, final Context context){
 
         if(checkEmailLogin(email,listener) & checkPasswordLogin(password, listener)){
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
-                    if (!UserRepository.getInstance().validateUser(email,password)){
+                    User user = ((BreakdownApplication)context.getApplicationContext()).getUserRepository().validateUser(email,password);
+                    if (user == null){
                         listener.onAuthenticationError();
                         listener.onClearErrorPassword();
                         listener.onClearErrorEmail();
@@ -25,18 +28,19 @@ public class LoginRegisterInteractor {
                         listener.onSuccess();
                         listener.onClearErrorPassword();
                         listener.onClearErrorEmail();
+                        ((BreakdownApplication)context.getApplicationContext()).setUserLogged(user);
                     }
                 }
             },2000);
         }
     }
 
-    public void RegisterCredentials(final String name, final String email, final String password, String passwordConfirm, final String birthday, final RegisterInteractor listener){
+    public void RegisterCredentials(final String name, final String email, final String password, String passwordConfirm, final String birthday, final RegisterInteractor listener, final Context context){
         if((checkNameRegister(name,listener) & checkEmailRegister(email,listener) & checkPasswordRegister(password,listener) & checkPasswordConfirmRegister(passwordConfirm,listener) & checkBirthdayRegister(birthday,listener)) && checkPasswordMatchRegister(password,passwordConfirm,listener)){
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (UserRepository.getInstance().existsUser(email)){
+                    if (((BreakdownApplication)context.getApplicationContext()).getUserRepository().existsUser(email)){
                         listener.onEmailExistError();
                         listener.onClearErrorPasswordMatch();
                         listener.onClearErrorPassword();
@@ -44,7 +48,7 @@ public class LoginRegisterInteractor {
                         listener.onClearErrorName();
                         listener.onClearErrorPasswordConfirm();
                     }else{
-                        UserRepository.getInstance().registerUser(name,email,password,birthday);
+                        ((BreakdownApplication)context.getApplicationContext()).getUserRepository().registerUser(name,email,password,birthday);
                         listener.onClearErrorPasswordMatch();
                         listener.onClearErrorPassword();
                         listener.onClearErrorBirthday();

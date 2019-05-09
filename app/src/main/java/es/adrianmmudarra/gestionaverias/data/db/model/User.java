@@ -1,4 +1,4 @@
-package es.adrianmmudarra.gestinaverias.data.db.model;
+package es.adrianmmudarra.gestionaverias.data.db.model;
 
 import java.util.Objects;
 

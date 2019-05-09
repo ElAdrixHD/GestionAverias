@@ -1,4 +1,4 @@
-package es.adrianmmudarra.gestinaverias;
+package es.adrianmmudarra.gestionaverias;
 
 import org.junit.Test;
 
